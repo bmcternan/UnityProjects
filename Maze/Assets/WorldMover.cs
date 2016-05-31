@@ -115,20 +115,27 @@ public class WorldMover : MonoBehaviour
 
                     float deltaAngle = _anchorAngle - angle;
 
-                    WorldCenterer.transform.localPosition = rightPos;
-                    WorldRotator.transform.localEulerAngles = new Vector3(0.0f, deltaAngle + _lastDeltaAngle, 0.0f);
-                    WorldUncenterer.transform.localPosition = (-1.0f * rightPos) +_offset ;
+                                        WorldCenterer.transform.localPosition = rightPos;
+                                        WorldRotator.transform.localEulerAngles = new Vector3(0.0f, deltaAngle + _lastDeltaAngle, 0.0f);
+                                        WorldUncenterer.transform.localPosition = (-1.0f * rightPos) +_offset ;
 
-                    //Vector3 dbgDelta = WorldCenterer.transform.localPosition - _lastDbgPos;
-                    //if ((dbgDelta.magnitude > 0.1f) || ((rightDevice.GetTouch(SteamVR_Controller.ButtonMask.Trigger)) && !_triggerDown))
-                    //{
-                    //    Debug.Log("Click pos World " + this.transform.localPosition.ToString());
-                    //    Debug.Log("       Centerer " + WorldCenterer.transform.localPosition.ToString());
-                    //    Debug.Log("     Uncenterer " + WorldUncenterer.transform.localPosition.ToString());
-                    //    Debug.Log("         origin " + Origin.transform.localPosition.ToString());
-                    //    _triggerDown = true;
-                    //}
-                    //_lastDbgPos = WorldCenterer.transform.localPosition;
+                    //Matrix4x4 centerMat = new Matrix4x4 () ;
+                    //Matrix4x4 rotateMat = new Matrix4x4();
+                    //Matrix4x4 uncenterMat = new Matrix4x4();
+
+                    //centerMat.SetTRS(rightPos, Quaternion.identity, new Vector3(1.0f, 1.0f, 1.0f));
+
+                    //Quaternion rotation = Quaternion.identity;
+                    //rotation.eulerAngles = new Vector3(0, deltaAngle + _lastDeltaAngle, 0);
+                    //rotateMat.SetTRS(new Vector3(0.0f, 0.0f, 0.0f), rotation, new Vector3(1.0f, 1.0f, 1.0f));
+
+                    //Vector3 shift = new Vector3();
+                    //shift = (-1.0f * rightPos) + _offset;
+                    //uncenterMat.SetTRS(shift, Quaternion.identity, new Vector3(1.0f, 1.0f, 1.0f));
+
+                    //Matrix4x4 result = new Matrix4x4();
+                    //result = centerMat * rotateMat * uncenterMat;
+                    //FromMatrix4x4(WorldUncenterer.transform, result);
 
                     if (rightDevice.GetTouch(SteamVR_Controller.ButtonMask.Trigger) && leftDevice.GetTouch(SteamVR_Controller.ButtonMask.Trigger))
                     {
@@ -158,33 +165,36 @@ public class WorldMover : MonoBehaviour
 
                     _rotatingWorld = true;
 
-                    Debug.Log("Enter pos World " + this.transform.localPosition.ToString());
-                    Debug.Log("       Centerer " + WorldCenterer.transform.localPosition.ToString());
-                    Debug.Log("     Uncenterer " + WorldUncenterer.transform.localPosition.ToString()); 
-                    Debug.Log("         origin " + Origin.transform.localPosition.ToString());
+                    //Debug.Log("Enter pos World " + this.transform.localPosition.ToString());
+                    //Debug.Log("       Centerer " + WorldCenterer.transform.localPosition.ToString());
+                    //Debug.Log("     Uncenterer " + WorldUncenterer.transform.localPosition.ToString()); 
+                    //Debug.Log("         origin " + Origin.transform.localPosition.ToString());
                 }
             }
             else
             {
                 if (_rotatingWorld)
                 {
-                    Debug.Log("Preexit pos World " + this.transform.localPosition.ToString());
-                    Debug.Log("         Centerer " + WorldCenterer.transform.localPosition.ToString());
-                    Debug.Log("       Uncenterer " + WorldUncenterer.transform.localPosition.ToString());
-                    Debug.Log("           origin " + Origin.transform.localPosition.ToString());
+                    //Debug.Log("Preexit pos World " + this.transform.localPosition.ToString());
+                    //Debug.Log("         Centerer " + WorldCenterer.transform.localPosition.ToString());
+                    //Debug.Log("       Uncenterer " + WorldUncenterer.transform.localPosition.ToString());
+                    //Debug.Log("           origin " + Origin.transform.localPosition.ToString());
 
                     Matrix4x4 mat = WorldUncenterer.transform.localToWorldMatrix;
 
                     FromMatrix4x4(this.transform, mat);
 
-                    WorldRotator.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
-                    WorldCenterer.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
-                    WorldUncenterer.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+                    //WorldUncenterer.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+                    //WorldUncenterer.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
 
-                    Debug.Log("Exit pos World " + this.transform.localPosition.ToString());
-                    Debug.Log("      Centerer " + WorldCenterer.transform.localPosition.ToString());
-                    Debug.Log("    Uncenterer " + WorldUncenterer.transform.localPosition.ToString());
-                    Debug.Log("        origin " + Origin.transform.localPosition.ToString());
+                                       WorldRotator.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
+                                       WorldCenterer.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+                                       WorldUncenterer.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+
+                    //Debug.Log("Exit pos World " + this.transform.localPosition.ToString());
+                    //Debug.Log("      Centerer " + WorldCenterer.transform.localPosition.ToString());
+                    //Debug.Log("    Uncenterer " + WorldUncenterer.transform.localPosition.ToString());
+                    //Debug.Log("        origin " + Origin.transform.localPosition.ToString());
 
                 }
                 _rotatingWorld = false;
