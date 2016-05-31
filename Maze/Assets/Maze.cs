@@ -24,9 +24,12 @@ public class Maze : MonoBehaviour
 	public float CellSize = 1.0f ;
 	public float CellHeight = 2.0f ;
 	public Material WallMaterial = null;
+    public GameController Controller = null;
 
 	private Cell[,] Cells;
 	private NeighborIndex[] _neighborSequence;
+
+    private const int WALL_LAYER = 8;
 
 	// Use this for initialization
 	void Start () 
@@ -57,8 +60,17 @@ public class Maze : MonoBehaviour
 		ptype.transform.parent = transform;
 		ptype.name = name;
 
-	}
-	private void GenerateWalls ()
+        Rigidbody wallRigidBody = ptype.AddComponent<Rigidbody>();
+        wallRigidBody.isKinematic = false;
+        wallRigidBody.useGravity = false;
+        wallRigidBody.constraints = RigidbodyConstraints.FreezeAll;
+
+        TargetController wallTarget = ptype.AddComponent<TargetController>();
+        wallTarget.Name = "Wall";
+        wallTarget.GameController = Controller;
+        ptype.layer = WALL_LAYER;
+    }
+    private void GenerateWalls ()
 	{
 		float origin_x = 0.0f;
 		float origin_y = 0.0f;
