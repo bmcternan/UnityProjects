@@ -69,13 +69,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Script\CameraMover.cs" />
-    <Compile Include="Assets\Script\GameController.cs" />
-    <Compile Include="Assets\Script\GameTimer.cs" />
-    <Compile Include="Assets\Script\Maze.cs" />
-    <Compile Include="Assets\Script\MouseScrollScript.cs" />
-    <Compile Include="Assets\Script\TargetController.cs" />
-    <Compile Include="Assets\Script\WorldMover.cs" />
+    <Compile Include="Assets\Scripts\CameraMover.cs" />
+    <Compile Include="Assets\Scripts\GameController.cs" />
+    <Compile Include="Assets\Scripts\GameTimer.cs" />
+    <Compile Include="Assets\Scripts\Maze.cs" />
+    <Compile Include="Assets\Scripts\MouseScrollScript.cs" />
+    <Compile Include="Assets\Scripts\TargetController.cs" />
+    <Compile Include="Assets\Scripts\WorldMover.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_GazeTracker.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_LaserPointer.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_Teleporter.cs" />

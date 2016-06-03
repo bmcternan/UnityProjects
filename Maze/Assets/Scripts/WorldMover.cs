@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Valve.VR;
+
 
 //[RequireComponent(typeof(SteamVR_TrackedObject))]
 public class WorldMover : MonoBehaviour
@@ -70,6 +72,14 @@ public class WorldMover : MonoBehaviour
         HMD = HeadObject.GetComponent<SteamVR_TrackedObject>();
 
         _offset = new Vector3(0.0f, 0.0f, 0.0f);
+    }
+
+    void SetGridVisibility(bool visible)
+    {
+        var compositor = OpenVR.Compositor;
+        if (compositor != null)
+            compositor.ClearSkyboxOverride();
+        compositor.FadeGrid(1.0f, visible);
     }
 
     void FixedUpdate ()
@@ -169,6 +179,8 @@ public class WorldMover : MonoBehaviour
                     //Debug.Log("       Centerer " + WorldCenterer.transform.localPosition.ToString());
                     //Debug.Log("     Uncenterer " + WorldUncenterer.transform.localPosition.ToString()); 
                     //Debug.Log("         origin " + Origin.transform.localPosition.ToString());
+
+                    SetGridVisibility(true);
                 }
             }
             else
@@ -196,6 +208,7 @@ public class WorldMover : MonoBehaviour
                     //Debug.Log("    Uncenterer " + WorldUncenterer.transform.localPosition.ToString());
                     //Debug.Log("        origin " + Origin.transform.localPosition.ToString());
 
+                    SetGridVisibility(false);
                 }
                 _rotatingWorld = false;
             }
