@@ -76,10 +76,8 @@ public class WorldMover : MonoBehaviour
 
     void SetGridVisibility(bool visible)
     {
-        var compositor = OpenVR.Compositor;
-        if (compositor != null)
-            compositor.ClearSkyboxOverride();
-        compositor.FadeGrid(1.0f, visible);
+        var chap = OpenVR.Chaperone;
+        chap.ForceBoundsVisible (visible);
     }
 
     void FixedUpdate ()
