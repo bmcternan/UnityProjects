@@ -66,7 +66,7 @@ public class Maze : MonoBehaviour
         wallRigidBody.constraints = RigidbodyConstraints.FreezeAll;
 
         TargetController wallTarget = ptype.AddComponent<TargetController>();
-        wallTarget.Name = "Wall";
+        wallTarget.Name = "Wall_" + name;
         wallTarget.GameController = Controller;
         ptype.layer = WALL_LAYER;
     }
